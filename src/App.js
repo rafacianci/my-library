@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+
+axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 
 const App = () => (
   <div className='App'>
