@@ -5,12 +5,6 @@ import { getBooks } from '../../actions/book';
 import './style.css';
 
 class Books extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentWillMount() {
     this.props.getBooks();
   }
@@ -19,7 +13,7 @@ class Books extends Component {
     return (
       <div className='container'>
         <div className='list'>
-          <h1 className='page-title'>Books</h1>
+          <h2 className='page-title'>Books</h2>
           <table className='table'>
             <thead>
               <tr>
@@ -33,7 +27,7 @@ class Books extends Component {
             <tbody>
               {
                 this.props.book.data.map((book) => (
-                  <Link key={book.id} to={`/${book.id}`} className='edit-link'>
+                  <Link key={book.id} to={`/book/${book.id}`} className='edit-link'>
                     <td>
                       <img
                         src={book.volumeInfo.imageLinks.smallThumbnail}

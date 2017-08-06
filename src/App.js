@@ -11,6 +11,7 @@ import {
 import reducers from './reducers';
 import './App.css';
 import Books from './containers/Books';
+import BookDetail from './containers/BookDetail';
 import SearchBooks from './components/SearchBooks';
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
@@ -32,6 +33,7 @@ const App = () => (
           </nav>
         </header>
         <Route exact path='/' component={Books} />
+        <Route path='/book/:bookId' component={BookDetail} />
       </div>
     </Provider>
   </Router>
