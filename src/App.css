@@ -9,8 +9,9 @@ header {
 }
 
 .App-header {
-  display: flex;
+  align-items: center;
   color: white;
+  display: flex;
   justify-content: space-between;
 }
 
