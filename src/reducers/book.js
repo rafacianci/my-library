@@ -10,7 +10,8 @@ export default (state = initialState, action) => {
   if (action.type === GET_BOOKS_SUCCESS) {
     return {
       ...state,
-      data: action.payload,
+      data: action.payload.items,
+      total: action.payload.totalItems,
     };
   }
 

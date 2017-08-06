@@ -5,7 +5,7 @@ import {
 } from './types';
 
 export const getBooks = () => (dispatch) => (
-  axios.post('volumes').then((result) => (
+  axios.get('volumes?q=a').then((result) => (
     dispatch({
       type: GET_BOOKS_SUCCESS,
       payload: result.data,
