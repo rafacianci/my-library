@@ -8,8 +8,8 @@ import {
   CHANGE_BOOK_FAVORITE,
 } from './types';
 
-export const getBooks = (search = 'a') => (dispatch) => (
-  axios.get(`volumes?q=${search}`).then((result) => (
+export const getBooks = (search = 'a', page = 1) => (dispatch) => (
+  axios.get(`volumes?q=${search}&startIndex=${(page - 1) * 10}`).then((result) => (
     dispatch({
       type: GET_BOOKS_SUCCESS,
       payload: result.data,

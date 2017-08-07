@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getBooks, changeFavorite } from '../../actions/book';
+import SearchBooks from '../../components/SearchBooks';
+import Pagination from '../../components/Pagination';
+import GetImage from '../../components/GetImage';
+import GetFavorite from '../../components/GetFavorite';
+import { getPaginationConfig } from '../../utils';
 import './style.css';
 
 class Books extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activePage: 1,
+    };
+  }
+
   componentWillMount() {
     this.props.getBooks();
   }
@@ -15,47 +28,36 @@ class Books extends Component {
     this.props.changeFavorite(bookId, bool);
   }
 
-  showFavorite(bookId) {
-    if (this.props.book.favorites.findIndex((id) => id === bookId) >= 0) {
-      return (
-        <button
-          onClick={(e) => this.handleFavorite(e, bookId, false)}
-          type='button'
-          className='favorite-button'
-        >
-          <svg style={{ width: 24, height: 24 }} viewBox='0 0 24 24'>
-            <path
-              d='M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62
-              L2,9.24L7.45,13.97L5.82,21L12,17.27Z'
-            />
-          </svg>
-        </button>
-      );
-    }
+  hanglePageChange(activePage) {
+    this.props.getBooks(this.state.search, activePage);
+    this.setState({
+      activePage,
+    });
+  }
 
-    return (
-      <button
-        onClick={(e) => this.handleFavorite(e, bookId, true)}
-        type='button'
-        className='favorite-button'
-      >
-        <svg style={{ width: 24, height: 24 }} viewBox='0 0 24 24'>
-          <path
-            d='M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,
-              10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19
-              ,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24
-              Z'
-          />
-        </svg>
-      </button>
-    );
+  handleSearchSubmit(event) {
+    event.preventDefault();
+    this.props.getBooks(this.state.search);
+  }
+
+  handleChangeSearch(search) {
+    this.setState({
+      search,
+    });
   }
 
   render() {
+    const config = getPaginationConfig(this.props.book.total, this.state.activePage);
     return (
       <div className='container'>
         <div className='list'>
-          <h2 className='page-title'>Books</h2>
+          <h2 className='page-title'>
+            Books
+            <SearchBooks
+              onSubmit={(event) => this.handleSearchSubmit(event)}
+              onChange={(value) => this.handleChangeSearch(value)}
+            />
+          </h2>
           <table className='table'>
             <thead>
               <tr>
@@ -71,8 +73,8 @@ class Books extends Component {
                 this.props.book.data.map((book) => (
                   <Link key={book.id} to={`/book/${book.id}`} className='edit-link'>
                     <td>
-                      <img
-                        src={book.volumeInfo.imageLinks.smallThumbnail}
+                      <GetImage
+                        images={book.volumeInfo.imageLinks}
                         alt={book.volumeInfo.title}
                       />
                     </td>
@@ -83,7 +85,11 @@ class Books extends Component {
                     <td>{ book.volumeInfo.publisher }</td>
                     <td>{ book.volumeInfo.publishedDate }</td>
                     <td>
-                      { this.showFavorite(book.id) }
+                      <GetFavorite
+                        bookId={book.id}
+                        favorites={this.props.book.favorites}
+                        onChange={(event, id, bool) => this.handleFavorite(event, id, bool)}
+                      />
                     </td>
                   </Link>
                 ))
@@ -91,6 +97,10 @@ class Books extends Component {
             </tbody>
           </table>
         </div>
+        <Pagination
+          config={config}
+          onChangePage={(activePage) => this.hanglePageChange(activePage)}
+        />
       </div>
     );
   }

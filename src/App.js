@@ -7,12 +7,12 @@ import thunk from 'redux-thunk';
 import {
   BrowserRouter as Router,
   Route,
+  Link,
 } from 'react-router-dom';
 import reducers from './reducers';
 import './App.css';
 import Books from './containers/Books';
 import BookDetail from './containers/BookDetail';
-import SearchBooks from './components/SearchBooks';
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 
@@ -28,8 +28,7 @@ const App = () => (
       <div className='App'>
         <header>
           <nav className='App-header container'>
-            <h1>Test</h1>
-            <SearchBooks />
+            <h1><Link to='/'>Library</Link></h1>
           </nav>
         </header>
         <Route exact path='/' component={Books} />

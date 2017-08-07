@@ -22,6 +22,15 @@ header {
   margin: 0;
 }
 
+.App-header h1 a {
+  color: inherit;
+}
+
+.App-header h1 a:hover {
+  color: #00d1b2;
+}
+
 .filter {
   display: flex;
+  float: right;
 }
