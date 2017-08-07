@@ -65,7 +65,7 @@ class Books extends Component {
                 <th>Name</th>
                 <th>Publisher</th>
                 <th>Published</th>
-                <th>Favorite</th>
+                <th>Star</th>
               </tr>
             </thead>
             <tbody>

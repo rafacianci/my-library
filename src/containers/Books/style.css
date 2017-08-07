@@ -63,6 +63,17 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 480px) {
+  .table thead th {
+    padding: 10px;
+  }
+
+  .table thead th:first-child,
+  .table tbody td:first-child {
+    display: none;
+  }
+}
+
 .image-link {
   color: #4A9EE7;
 }
