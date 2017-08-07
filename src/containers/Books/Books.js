@@ -6,7 +6,7 @@ import SearchBooks from '../../components/SearchBooks';
 import Pagination from '../../components/Pagination';
 import GetImage from '../../components/GetImage';
 import GetFavorite from '../../components/GetFavorite';
-import { getPaginationConfig } from '../../utils';
+import { getPaginationConfig, highlightSearch } from '../../utils';
 import './style.css';
 
 class Books extends Component {
@@ -79,10 +79,10 @@ class Books extends Component {
                       />
                     </td>
                     <td className='book-description'>
-                      <b>{ book.volumeInfo.title }</b>
-                      <p>{ book.volumeInfo.description }</p>
+                      <b>{ highlightSearch(book.volumeInfo.title, this.state.search) }</b>
+                      <p>{ highlightSearch(book.volumeInfo.description, this.state.search) }</p>
                     </td>
-                    <td>{ book.volumeInfo.publisher }</td>
+                    <td>{ highlightSearch(book.volumeInfo.publisher, this.state.search) }</td>
                     <td>{ book.volumeInfo.publishedDate }</td>
                     <td>
                       <GetFavorite

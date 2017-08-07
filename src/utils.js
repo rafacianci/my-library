@@ -1,3 +1,5 @@
+import React from 'react';
+
 const totalItensPerPage = 10;
 
 const getStartPage = (totalPages, currentPage) => {
@@ -44,6 +46,22 @@ export const getPaginationConfig = (totalBooks, active) => {
     total: pages,
     collection: getPaginationCollection(pages, active),
   };
+};
+
+export const highlightSearch = (text, search = '') => {
+  if (!text || !search) {
+    return text;
+  }
+
+  const arr = text.toLowerCase().split(search.toLowerCase());
+
+  return arr.map((arg, index) => {
+    if (index === 0) {
+      return <span>{arg}</span>;
+    }
+
+    return <span><mark>{search}</mark>{arg}</span>;
+  });
 };
 
 export const LocalStorage = {
