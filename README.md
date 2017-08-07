@@ -1,4 +1,10 @@
-In this project directory, you can run:
+For this project I used ReactJS, with Redux.
+
+I used the React CLI to create the project boilerplaite to be the fastest way to create and deploy a new project.
+
+For deploy I'm using the Heroku with Automatic deploy, when there is new commits on master.
+
+And in this project directory, you can run:
 
 ### `npm install`
 Install all the necessary dependencies.
