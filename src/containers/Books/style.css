@@ -51,6 +51,11 @@
   line-height: 18px;
 }
 
+.table tbody td .favorite-button {
+  background-color: transparent;
+  border: none;
+}
+
 .table .book-description p{
   margin-top: 5px;
   max-height: 38px;

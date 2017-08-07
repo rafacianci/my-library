@@ -5,6 +5,7 @@ import {
   GET_DETAIL_BOOK_FETCH,
   GET_DETAIL_BOOK_SUCCESS,
   GET_DETAIL_BOOK_ERROR,
+  CHANGE_BOOK_FAVORITE,
 } from './types';
 
 export const getBooks = (search = 'a') => (dispatch) => (
@@ -37,3 +38,11 @@ export const getBookDetail = (id) => (dispatch) => {
     })
   ));
 };
+
+export const changeFavorite = (id, isFavorite) => ({
+  type: CHANGE_BOOK_FAVORITE,
+  payload: {
+    id,
+    isFavorite,
+  },
+});
