@@ -1,6 +1,8 @@
 import React from 'react';
 
-const totalItensPerPage = 10;
+let totalItensPerPage = 10;
+
+export const changePageItens = itens => totalItensPerPage = itens
 
 const getStartPage = (totalPages, currentPage) => {
   if ((currentPage - 3) <= 0 || totalPages < 5) {
@@ -38,8 +40,10 @@ const getPaginationCollection = (totalPages, currentPage) => {
   return pageCollection;
 };
 
-export const getPaginationConfig = (totalBooks, active) => {
+export const getPaginationConfig = (totalBooks, currentPage = 0) => {
   const pages = Math.ceil(totalBooks / totalItensPerPage);
+
+  const active = currentPage > pages ? 0 : currentPage
 
   return {
     active,

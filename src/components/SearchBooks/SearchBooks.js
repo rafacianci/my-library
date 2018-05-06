@@ -5,10 +5,11 @@ const SearchBooks = (props) => (
     <form onSubmit={(e) => props.onSubmit(e)} className='field has-addons'>
       <div className='control'>
         <input
-          className='input'
           type='text'
+          className='input'
           placeholder='Pesquisar'
           onChange={(event) => props.onChange(event.target.value)}
+          required
         />
       </div>
       <div className='control'>
