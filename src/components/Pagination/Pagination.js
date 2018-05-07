@@ -6,6 +6,7 @@ const Pagination = ({ config, onChangePage }) => (
     <button
       type='button'
       className='pag-btn'
+      data-tag='previous'
       disabled={config.active === 1}
       onClick={() => onChangePage(config.active - 1)}
     >
@@ -17,6 +18,7 @@ const Pagination = ({ config, onChangePage }) => (
           key={page}
           type='button'
           className='pag-btn'
+          data-tag={`page_${page}`}
           disabled={config.active === page}
           onClick={() => onChangePage(page)}
         >
@@ -27,6 +29,7 @@ const Pagination = ({ config, onChangePage }) => (
     <button
       type='button'
       className='pag-btn'
+      data-tag='next'
       disabled={config.active === config.total}
       onClick={() => onChangePage(config.active + 1)}
     >

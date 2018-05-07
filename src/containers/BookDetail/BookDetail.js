@@ -12,11 +12,11 @@ const renderBookDetail = (book) => {
 
   return (
     <div className='content'>
-      <h2 className='page-title'>{book.volumeInfo.title}</h2>
+      <h2 className='page-title'>{(book.volumeInfo) && book.volumeInfo.title}</h2>
       <div className='authors'>
         <b>Authors: </b>
         {
-          book.volumeInfo.authors.map((author) => (
+          (book.volumeInfo) && book.volumeInfo.authors.map((author) => (
             <span key={author} className='author'>{author}</span>
           ))
         }

@@ -37,7 +37,10 @@ class Books extends Component {
 
   handleSearchSubmit(event) {
     event.preventDefault();
-    this.props.getBooks(this.state.search);
+    this.props.getBooks(this.state.search, 1);
+    this.setState({
+      activePage: 1,
+    });
   }
 
   handleChangeSearch(search) {
